@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import {
-    FlatList,
-    TouchableWithoutFeedback,
-} from 'react-native-gesture-handler';
+import { useColorScheme } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
+import { Color } from './constants';
+import EmojiPickerTopBar from './EmojiPickerTopBar';
 import EmojiRenderItem from './EmojiRenderItem';
 import emojis from './emojis.json';
 import { useEmojiPickerAnimation } from './useEmojiPickerAnimation';
@@ -23,6 +22,11 @@ const EmojiPicker = React.forwardRef<EmojiPickerRef, EmojiPickerProps>(
     ({ setEmoji, height = 0.85 }, ref) => {
         const { animStyle, show, hide } = useEmojiPickerAnimation(height);
 
+        const scheme = useColorScheme();
+
+        const backgroundColor =
+            scheme === 'dark' ? Color.darkgrey : Color.lightgrey;
+
         React.useImperativeHandle(ref, () => ({
             show,
             hide,
@@ -36,14 +40,10 @@ const EmojiPicker = React.forwardRef<EmojiPickerRef, EmojiPickerProps>(
 
         return (
             <Animated.View style={animStyle}>
-                <View>
-                    <TouchableWithoutFeedback onPress={hide}>
-                        <Text>close</Text>
-                    </TouchableWithoutFeedback>
-                </View>
+                <EmojiPickerTopBar hide={hide} />
 
                 <FlatList
-                    style={{ width: '100%', height: '100%' }}
+                    style={{ width: '100%', height: '100%', backgroundColor }}
                     data={emojis}
                     keyExtractor={item => item.name}
                     renderItem={({ item }) => (

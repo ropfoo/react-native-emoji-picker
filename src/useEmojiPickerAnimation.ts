@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, useColorScheme } from 'react-native';
 import {
     Easing,
     useAnimatedStyle,
@@ -6,14 +6,19 @@ import {
     withTiming,
     WithTimingConfig,
 } from 'react-native-reanimated';
+import { Color } from './constants';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 export function useEmojiPickerAnimation(height: number) {
     const top = useSharedValue(SCREEN_HEIGHT);
 
+    const scheme = useColorScheme();
+
     const animStyle = useAnimatedStyle(() => ({
-        backgroundColor: 'lightgrey',
+        backgroundColor: scheme === 'dark' ? Color.black : Color.white,
+        borderColor: scheme === 'dark' ? Color.darkmidgrey : Color.lightmidgrey,
+        borderTopWidth: 1,
         position: 'absolute',
         top: top.value,
         height: SCREEN_HEIGHT * height,
@@ -21,7 +26,7 @@ export function useEmojiPickerAnimation(height: number) {
 
     const config: WithTimingConfig = {
         easing: Easing.ease,
-        duration: 200,
+        duration: 250,
     };
 
     const show = () => {
@@ -33,7 +38,7 @@ export function useEmojiPickerAnimation(height: number) {
     const hide = () => {
         'worklet';
 
-        (top.value = withTiming(SCREEN_HEIGHT)), config;
+        top.value = withTiming(SCREEN_HEIGHT, config);
     };
 
     return {

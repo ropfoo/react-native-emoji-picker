@@ -1,20 +1,22 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 
 interface EmojiProps {
     emoji: {
         character: string;
         name: string;
     };
-    onPress: () => void;
+    onPress: (emoji: string) => void;
     size?: number;
 }
 
-const Emoji = React.memo<EmojiProps>(({ emoji, size = 20, onPress }) => {
+const Emoji = React.memo<EmojiProps>(({ emoji, size = 28, onPress }) => {
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
-            <View style={style.wrapper}>
+        <TouchableWithoutFeedback onPress={() => onPress(emoji.character)}>
+            <View style={[style.wrapper]}>
                 <Text style={{ fontSize: size }}>{emoji.character}</Text>
             </View>
         </TouchableWithoutFeedback>
