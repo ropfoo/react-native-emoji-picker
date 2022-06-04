@@ -17,7 +17,7 @@ export default function App() {
             <EmojiPicker
                 ref={emojiPickerRef}
                 setEmoji={em => setEmoji(em)}
-                height={0.5}
+                height={0.75}
             />
         </>
     );
