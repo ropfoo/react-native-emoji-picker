@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import EmojiPicker, { EmojiPickerRef } from './src/EmojiPicker';
+import EmojiPicker, { EmojiPickerRef } from './src/EmojiPicker/EmojiPicker';
 
 export default function App() {
     const emojiPickerRef = React.useRef<EmojiPickerRef>(null);
