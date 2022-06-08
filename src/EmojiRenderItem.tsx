@@ -46,27 +46,21 @@ const EmojiRenderItem = React.memo<EmojiRenderItemProps>(props => {
                     {props.name.toUpperCase()}
                 </Text>
             </View>
-            <FlatList
-                contentContainerStyle={{ backgroundColor, width: '100%' }}
-                data={props.data}
-                numColumns={8}
-                keyExtractor={item => item.name}
-                renderItem={({ item }) => (
-                    <Emoji key={item.name} emoji={item} onPress={updateEmoji} />
-                )}
-            />
-            {/* <View style={style.list}>
-                {newArray.map((emoji, index) => {
-                    console.log('TTTTTT', emoji);
-                    return (
+            <View style={style.emojisWrapper}>
+                <FlatList
+                    contentContainerStyle={{ backgroundColor, width: '100%' }}
+                    data={props.data}
+                    numColumns={8}
+                    keyExtractor={item => item.name}
+                    renderItem={({ item }) => (
                         <Emoji
-                            key={emoji.name}
-                            emoji={emoji}
-                            onPress={() => props.setEmoji(emoji.character)}
+                            key={item.name}
+                            emoji={item}
+                            onPress={updateEmoji}
                         />
-                    );
-                })}
-            </View> */}
+                    )}
+                />
+            </View>
         </View>
     );
 });
@@ -76,6 +70,9 @@ export default EmojiRenderItem;
 const style = StyleSheet.create({
     wrapper: {
         justifyContent: 'center',
+    },
+    emojisWrapper: {
+        alignItems: 'center',
     },
     titleWrapper: {
         padding: 10,
