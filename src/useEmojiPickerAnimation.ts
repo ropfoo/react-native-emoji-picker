@@ -26,7 +26,7 @@ export function useEmojiPickerAnimation(height: number) {
 
     const config: WithTimingConfig = {
         easing: Easing.ease,
-        duration: 250,
+        duration: 200,
     };
 
     const show = () => {

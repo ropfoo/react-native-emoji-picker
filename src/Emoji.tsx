@@ -2,8 +2,6 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-const SCREEN_WIDTH = Dimensions.get('screen').width;
-
 interface EmojiProps {
     emoji: {
         character: string;

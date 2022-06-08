@@ -14,11 +14,7 @@ export default function App() {
                     onPress={() => emojiPickerRef.current?.show()}
                 />
             </View>
-            <EmojiPicker
-                ref={emojiPickerRef}
-                setEmoji={em => setEmoji(em)}
-                height={0.75}
-            />
+            <EmojiPicker ref={emojiPickerRef} setEmoji={em => setEmoji(em)} />
         </>
     );
 }
