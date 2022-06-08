@@ -46,6 +46,9 @@ const EmojiPicker = React.forwardRef<EmojiPickerRef, EmojiPickerProps>(
                 <FlatList
                     style={{ width: '100%', height: '100%', backgroundColor }}
                     data={emojis}
+                    bounces={false}
+                    alwaysBounceHorizontal={false}
+                    alwaysBounceVertical={false}
                     keyExtractor={item => item.name}
                     renderItem={({ item }) => (
                         <EmojiRenderItem {...item} setEmoji={updateEmoji} />
